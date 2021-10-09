@@ -1,0 +1,7 @@
+flask
+flask-security-too
+flask-mongoengine
+flask-admin
+
+#optional
+flask-debugtoolbar

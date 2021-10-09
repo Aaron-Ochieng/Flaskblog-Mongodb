@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% from "security/_macros.html" import render_field_with_errors, render_field, render_field_errors %}
+
+{% block content %}
+{% include "security/_messages.html" %}
+<div class="content-section">
+  <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+    {{ login_user_form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Log In</legend>
+      <div class="form-group">
+        {{ render_field_with_errors(login_user_form.email,class_='form-control') }}
+      </div>
+      <div class="form-group">
+        {{ render_field_with_errors(login_user_form.password,class_='form-control') }}
+      </div>
+      <div class="form-check">
+        {{ render_field_with_errors(login_user_form.remember,class_='form-check') }}
+      </div>
+      {{ render_field_errors(login_user_form.csrf_token) }}
+    </fieldset>
+    <div class="form-group">
+      {{ render_field(login_user_form.submit,class_="btn btn-outline-info") }}
+      <small class="text-muted ml-2">
+        <a href="{{ url_for('security.forgot_password') }}">Forgot Password?</a>
+      </small>
+    </div>
+  </form>
+</div>
+{% endblock content %}
